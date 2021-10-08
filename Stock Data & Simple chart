@@ -1,0 +1,19 @@
+#pip install pandas
+#pip install pandas-datareader
+#pip install matplotlib
+#pip install mplfinance
+
+import matplotlib.pyplot as plt
+import pandas_datareader as web
+import mplfinance as mpf
+import datetime as dt
+
+start = dt.datetime(2021,1,1)
+end = dt.datetime.now()
+
+
+data = web.DataReader('TSLA', 'yahoo', start, end)
+
+plt.plot(data['Close'])
+plt.show()
+mpf.plot(data['2021-3'], type = 'candle')
