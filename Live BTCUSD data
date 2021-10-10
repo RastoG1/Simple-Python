@@ -1,0 +1,15 @@
+import requests
+import bs4 as bs
+from time import sleep
+
+def price():
+    url = 'https://finance.yahoo.com/quote/BTC-USD?p=BTC-USD&.tsrc=fin-srch'
+    response = requests.get(url)
+    soup = bs.BeautifulSoup(response.text, 'lxml')
+    #print(soup)
+    price = soup.findAll('div', {'class': 'D(ib) Mend(20px)'})[0].find('span').text
+    print(price)
+    
+while True:
+    price()
+    sleep(10)
