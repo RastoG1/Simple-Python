@@ -1,0 +1,25 @@
+import smtplib
+from email import encoders
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase #for attachement
+from email.mime.multipart import MIMEMultipart
+
+server = smtplib.SMTP('smtp.gmail.com', 465)
+
+server.ehlo()
+
+server.login('mail_from', 'password')
+
+msg = MIMEMultipart()
+msg['From'] = 'name'
+msg['To'] = 'mail_to'
+msg['Subject'] = 'Test'
+
+with open('text.txt', 'r') as f:
+    message = f.read()
+    
+msg.attach(MIMEText(message), 'plain')
+
+text = msg.as_string()
+server.sendmail('mail_from', 'mail_to', text)
+print('done')
