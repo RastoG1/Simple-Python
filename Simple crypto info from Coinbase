@@ -1,0 +1,16 @@
+#pip install cbpro  --> for coinbase pro...
+
+import cbpro
+
+public_client = cbpro.PublicClient()
+
+result = public_client.get_currencies()
+info = public_client.get_product_ticker('BTC-USD')
+
+info_24hr = public_client.get_product_24hr_stats('BTC-USD')
+
+print(info, '\n')
+print(info_24hr, '\n')
+
+for row in result:
+  print(row['id'])
