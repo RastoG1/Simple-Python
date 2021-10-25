@@ -1,0 +1,11 @@
+#pip install yahoo_fin
+#pip install pandas
+
+from yahoo_fin import options
+import pandas as pd
+
+stock = 'AAPL'
+
+pd.set_option('display.max.columns', None) #to see all columns
+chain = options.get_calls(stock)
+print(chain['Strike'])
