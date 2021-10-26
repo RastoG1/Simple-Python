@@ -1,0 +1,37 @@
+#NLP - natural language processing
+
+#pip install nltk
+#pip install textblob
+#pip install newspaper3k --> get articles to script...
+#pip install nlp
+
+from textblob import TextBlob, blob
+from newspaper import Article
+
+
+url = 'https://www.bloomberg.com/news/articles/2021-10-25/stocks-set-to-rise-as-earnings-inflation-weighed-markets-wrap?srnd=premium-europe'
+article = Article(url)
+
+article.download()
+article.parse()
+article.nlp()
+
+text = article.summary #we can use .text, but summary is more focusing on main info
+print(text)
+
+blob = TextBlob(text)
+sentiment = blob.sentiment.polarity #interval (-1;1), 1 - positive and -1 - negative
+print(sentiment)
+
+
+#-----------------------#
+# now from our own file #
+#-----------------------#
+
+with open('mytext.txt', 'r') as f:
+    text_2 = f.read()
+
+blob_2 = TextBlob(text_2)
+sentiment_2 = blob_2.sentiment.polarity
+print(sentiment_2)
+
